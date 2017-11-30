@@ -38,6 +38,29 @@ public class RoundTest {
 
         System.out.println(result);
 
+        result = bigDecimal.setScale(2, RoundingMode.DOWN);
+
+        System.out.println(result);
+
+        result = bigDecimal.setScale(2, RoundingMode.CEILING);
+
+        System.out.println(result);
+
+        result = bigDecimal.setScale(2, RoundingMode.FLOOR);
+
+        System.out.println(result);
+
+        result = bigDecimal.setScale(2, RoundingMode.HALF_UP);
+
+        System.out.println(result);
+
+        result = bigDecimal.setScale(2, RoundingMode.HALF_DOWN);
+
+        System.out.println(result);
+
+        result = bigDecimal.setScale(2, RoundingMode.HALF_EVEN);
+
+        System.out.println(result);
 
     }
 }
