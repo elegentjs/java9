@@ -6,7 +6,7 @@
  * 功能概要    :
  * 做成日期    : 2017/11/30
  */
-package win.elegentjs.clone;
+package win.elegentjs.basic.clone;
 
 import java.io.Serializable;
 import java.util.Date;
