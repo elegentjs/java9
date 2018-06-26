@@ -1,38 +1,40 @@
 package win.elegentjs.datastructor.sort.advanced;
 
+import java.util.Arrays;
+
 /**
  * 希尔排序
  */
 public class ShellSort {
-
     public static void sort(int[] array) {
-        int inner, outer;
-        int temp;
+        // 步长，确定好的步长能提高效率
+        int gap = 1;
 
-        int h = 1;
-
-        int elements = array.length;
-
-        while (h <  elements / 3) {
-            h = h * 3 + 1;
+        while (gap < array.length / 3) {
+            gap = gap * 3 + 1;
         }
 
-        while (h > 0) {
-            for(outer = h; outer < elements; outer ++) {
-                temp = array[outer];
-                inner = outer;
+        int x, j;
 
-                while (inner > h - 1 && array[inner - h] >= temp) {
-                    array[inner] = array[inner - h];
-                    inner -= h;
+        while (gap >= 1) {
+            for (int i = gap; i < array.length; i ++) {
+                x = array[i];
+                j = i - gap;
+
+                //直接插入排序，会向前找所适合的位置
+                while (j >= 0 && array[j] > x) {
+                    //交换位置
+                    array[j + gap] = array[j];
+                    j = j - gap;
                 }
 
-                array[inner] = temp;
-
+                array[j + gap] = x;
             }
 
-            h = (h - 1) / 3;
+            gap = (gap - 1) / 3;
+
         }
+
     }
 
 }

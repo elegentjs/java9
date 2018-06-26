@@ -42,6 +42,7 @@ public class PrintSort {
             temp.append(" ");
         }
 
+        //System.out.println("array: " + Arrays.toString(array));
         System.out.println(temp + ", cost time: " + (end - start) + " mills. ===================");
     }
 }
