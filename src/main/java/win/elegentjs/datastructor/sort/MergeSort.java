@@ -1,5 +1,8 @@
 package win.elegentjs.datastructor.sort;
 
+/**
+ * 归并排序
+ */
 public class MergeSort {
 
 
