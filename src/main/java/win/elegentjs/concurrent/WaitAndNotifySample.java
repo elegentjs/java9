@@ -2,29 +2,23 @@ package win.elegentjs.concurrent;
 
 public class WaitAndNotifySample {
 
-    private boolean isSigned = false;
 
     public void doWait() {
         synchronized (this) {
 
-            while (!isSigned) {
-                try {
-                    System.out.println("wait ... , Thread Name: " + Thread.currentThread().getName());
-                    this.wait();
-                    System.out.println("I walk up, Thread Name: " + Thread.currentThread().getName());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                System.out.println("wait ... , Thread Name: " + Thread.currentThread().getName());
+                this.wait();
+                System.out.println("I walk up, Thread Name: " + Thread.currentThread().getName());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-
-            isSigned = true;
         }
     }
 
 
     public void doNotify() {
         synchronized (this) {
-            isSigned = true;
             this.notifyAll();
 
             System.out.println("notify ... , ThreadName: " + Thread.currentThread().getName());
