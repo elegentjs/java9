@@ -1,5 +1,6 @@
 package win.elegentjs.concurrent;
 
+@SuppressWarnings("all")
 public class WaitAndNotifySample {
 
 
