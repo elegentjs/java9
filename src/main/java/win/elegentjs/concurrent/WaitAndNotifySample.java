@@ -9,7 +9,7 @@ public class WaitAndNotifySample {
 
             try {
                 System.out.println("wait ... , Thread Name: " + Thread.currentThread().getName());
-                this.wait(2000);
+                this.wait();
                 System.out.println("I walk up, Thread Name: " + Thread.currentThread().getName());
             } catch (InterruptedException e) {
                 e.printStackTrace();
