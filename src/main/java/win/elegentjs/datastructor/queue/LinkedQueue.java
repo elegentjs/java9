@@ -1,6 +1,7 @@
 package win.elegentjs.datastructor.queue;
 
-import com.elegentjs.link.DoubleLinkedList;
+
+import win.elegentjs.datastructor.link.DoubleLinkedList;
 
 /**
  * 基于双端链表实现的队列

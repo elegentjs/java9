@@ -1,6 +1,7 @@
 package win.elegentjs.datastructor.reversepolish;
 
-import com.elegentjs.stack.Stack;
+
+import win.elegentjs.datastructor.stack.Stack;
 
 import java.util.Scanner;
 

@@ -1,6 +1,7 @@
 package win.elegentjs.datastructor.stack;
 
-import com.elegentjs.link.SingleLinkedList;
+
+import win.elegentjs.datastructor.link.SingleLinkedList;
 
 /**
  * 基于单向链表的栈结构
