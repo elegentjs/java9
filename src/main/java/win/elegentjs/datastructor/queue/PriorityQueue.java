@@ -1,75 +1,96 @@
 package win.elegentjs.datastructor.queue;
 
-import java.util.Random;
-
+/**
+ * 优先级队列按照关键字插入时保持排序
+ * 对优先级队列的操作通常有：
+ *
+ *  1）插入
+ *  2）查找
+ *  3）删除
+ */
 public class PriorityQueue {
 
     private int maxSize;
 
-    private long[] queArray;
+    private int[] elementData;
 
     private int items;
 
+    public PriorityQueue(int maxSize) {
+        this.maxSize = maxSize;
 
-    public PriorityQueue(int size) {
-        maxSize = size;
-        queArray = new long[maxSize];
         items = 0;
+
+        elementData = new int[maxSize];
     }
 
-    public void insert(long item) {
-        int j;
-
-        if (items == 0) {
-            queArray[items ++] = item;
-        } else {
-            for (j = items - 1; j >=0; j --) {
-                if (item > queArray[j]) {
-                    queArray[j + 1] = queArray[j];
-                } else {
-                    break;
-                }
-            }
-
-
-            queArray[j + 1] = item;
-            items ++;
-
-
-        }
+    /**
+     * 当前队列的最大容量
+     * @return
+     */
+    public int size() {
+        return maxSize;
     }
 
-
-    public long remove() {
-        return queArray[-- items];
-    }
-
-    public long peekMin() {
-        return queArray[items - 1];
-    }
-
-    public boolean isEmpty() {
-        return items == 0;
-    }
-
+    /**
+     * 判断当前队列是否已满
+     * @return
+     */
     public boolean isFull() {
         return items == maxSize;
     }
 
-    public static void main(String[] args) {
-        PriorityQueue queue = new PriorityQueue(100);
 
-        while (!queue.isFull()) {
-            queue.insert(new Random().nextInt(1000));
-        }
-
-
-        while (!queue.isEmpty()) {
-            long item = queue.remove();
-            System.out.print(item + " ");
-        }
-
-        System.out.println();
+    /**
+     * 判断当前队列是否为空
+     * @return
+     */
+    public boolean isEmpty() {
+        return items == 0;
     }
 
+    /**
+     * 插入元素至优先级队列
+     * @param element
+     */
+    public void add(int element) {
+
+        if (isFull()) {
+            throw new IllegalStateException("优先级队列已满");
+        }
+
+        if (items == 0) {
+            elementData[items ++] = element;
+            return;
+        }
+
+        // 当前队列最大元素的索引位
+        int j = items - 1;
+
+        while (j >= 0 && element < elementData[j]) {
+            elementData[j + 1] = elementData[j];
+            j --;
+        }
+
+        elementData[ j + 1] = element;
+        items ++;
+    }
+
+
+    /**
+     * 队头移除优先级最高的元素
+     * @return
+     */
+    public int remove() {
+        if (isEmpty()) {
+            throw new IllegalStateException("当前队列为空");
+        }
+        int k = items - 1;
+        int value = elementData[k];
+
+        elementData[k] = -1;
+        items --;
+
+        return value;
+    }
 }

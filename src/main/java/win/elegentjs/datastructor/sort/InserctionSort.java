@@ -1,7 +1,7 @@
 package win.elegentjs.datastructor.sort;
 
 /**
- * 插入排序
+ * 直接插入排序
  */
 public class InserctionSort {
 
