@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * 本类是Array工具类，是Java Collection Framework家族中的一员
+ *
  * 本类演示Arrays帮助类，提供的方法如下：
  *
  *  sort
