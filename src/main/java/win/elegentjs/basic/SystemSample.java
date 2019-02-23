@@ -1,4 +1,4 @@
-package win.elegentjs;
+package win.elegentjs.basic;
 
 import java.util.Arrays;
 import java.util.Map;
