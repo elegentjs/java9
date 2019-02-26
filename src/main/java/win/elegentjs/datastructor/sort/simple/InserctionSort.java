@@ -1,4 +1,6 @@
-package win.elegentjs.datastructor.sort;
+package win.elegentjs.datastructor.sort.simple;
+
+import win.elegentjs.util.ArrayUtil;
 
 /**
  * 直接插入排序
@@ -17,8 +19,11 @@ public class InserctionSort {
 
             array[j + 1] = temp;
         }
-
     }
 
+
+    public static void main(String[] args) throws NoSuchMethodException {
+        ArrayUtil.sort(InserctionSort.class.getMethod("sort", int[].class));
+    }
 
 }

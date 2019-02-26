@@ -1,4 +1,4 @@
-package win.elegentjs.datastructor.sort;
+package win.elegentjs.datastructor.sort.advanced;
 
 /**
  * 归并排序
