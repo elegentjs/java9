@@ -17,6 +17,8 @@ public class ThreadPoolSample {
             pool.execute(runnable);
         }
 
+        pool.stop();
+
     }
 
 }
