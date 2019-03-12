@@ -22,6 +22,7 @@ public class QueueSample {
     public static void main(String[] args) throws InterruptedException {
         // 单端队列；双端队列
         // 这个比较简单，实现Queue接口的是单端队列；实现Deque接口的是双端队列
+        // 典型的是LinkedList
 
         // BlockingQueue; UnBlockingQueue
         BlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<>(10);
