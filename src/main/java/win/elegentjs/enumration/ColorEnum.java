@@ -13,6 +13,19 @@ public enum ColorEnum {
         this.value = value;
     }
 
+    public static ColorEnum getType(int value) {
+         ColorEnum result = null;
+         for (ColorEnum item : ColorEnum.values()) {
+             if (item.value == value) {
+                 result = item;
+                 break;
+             }
+         }
+
+         return result;
+    }
+
+
     public int getValue() {
         return value;
     }
@@ -28,12 +41,14 @@ public enum ColorEnum {
         System.out.println(red.name());
         System.out.println("ordinal: " + red.ordinal());
         System.out.println("getValue: " + red.getValue());
+        System.out.println("getType: " + ColorEnum.getType(red.getValue()));
 
         System.out.println("=====================");
 
         for (ColorEnum item : ColorEnum.values()) {
             print(item);
         }
+
     }
 
     public static void print(ColorEnum colorEnum) {
