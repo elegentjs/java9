@@ -10,6 +10,12 @@ public class EnumSetSample {
         for (ColorEnum item : colorEnums) {
             System.out.println(item);
         }
+
+        EnumSet<ColorEnum> emptyEnums = EnumSet.noneOf(ColorEnum.class);
+        emptyEnums.add(ColorEnum.PINK);
+
+        System.out.println(emptyEnums);
+
     }
 }
 
