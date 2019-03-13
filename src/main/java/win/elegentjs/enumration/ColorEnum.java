@@ -1,26 +1,16 @@
 package win.elegentjs.enumration;
 
 public enum ColorEnum {
-    RED("RED", 1),
-    BLACK("BLACK", 2),
-    WHITE("WHITE", 3),
-    PINK("PINK", 4),
-    BLUE("BLUE", 5);
+    RED(1),
+    BLACK( 2),
+    WHITE(3),
+    PINK( 4),
+    BLUE( 5);
 
-    private String name;
     private int value;
 
-     ColorEnum(String name, int value) {
-        this.name = name;
+     ColorEnum(int value) {
         this.value = value;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getValue() {
