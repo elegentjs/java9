@@ -1,4 +1,4 @@
-package win.elegentjs.designpattern;
+package win.elegentjs.designpattern.singleton;
 
 /**
  * 设计模式：
