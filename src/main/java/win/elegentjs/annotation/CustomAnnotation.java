@@ -23,9 +23,9 @@ class Main {
     public static void main(String[] args) {
         Class<Main> clazz = Main.class;
 
-        CustomAnnotation customAnnotation = clazz.getAnnotation(CustomAnnotation.class);
 
-        if (customAnnotation != null) {
+        if (clazz.isAnnotationPresent(CustomAnnotation.class)) {
+            CustomAnnotation customAnnotation = clazz.getAnnotation(CustomAnnotation.class);
             System.out.println("当前类： " + Main.class + " 有CustomAnnotation注解。注解值为：" + customAnnotation.value());
         } else {
             System.out.println("当前类：" + Main.class + " 没有注解。");
