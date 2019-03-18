@@ -15,9 +15,13 @@ public class ProducterAndConsumer {
 
         new Thread(new Producter("厂家1", s)).start();
         new Thread(new Producter("厂家2", s)).start();
+        new Thread(new Producter("厂家3", s)).start();
+        new Thread(new Producter("厂家4", s)).start();
+        new Thread(new Producter("厂家5", s)).start();
 
         new Thread(new Consumer("张三", s)).start();
         new Thread(new Consumer("李四", s)).start();
+        new Thread(new Consumer("王五", s)).start();
 
     }
 }
@@ -40,7 +44,7 @@ class Producter implements Runnable {
     public void run() {
         while (true) {
             synchronized (storage) {
-                while (storage.getCount() >= 100) {
+                while (storage.getCount() >= 30) {
                     try {
                         storage.wait();
                     } catch (InterruptedException e) {
@@ -102,7 +106,7 @@ class Storage {
     public void add() {
         count ++;
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -111,7 +115,7 @@ class Storage {
     public void remove() {
         count --;
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
