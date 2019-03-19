@@ -4,20 +4,31 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 采用Atomic类可以保证原子性
+ */
 public class SequenceSample {
 
     public static void main(String[] args) throws InterruptedException {
-        OriginSeq seq = new OriginSeq();
+        Seq seq = new Seq();
 
         ExecutorService executorService = Executors.newFixedThreadPool(100);
 
-        for (int index = 0; index < 50; index ++) {
-            Thread.sleep(10);
-            executorService.submit(seq::add);
-            executorService.submit(() -> {
-                System.out.println("current val : " + seq.getVal());
-            });
-        }
+        executorService.submit(() -> {
+            while (true) {
+                Thread.sleep(100);
+                System.out.println(Thread.currentThread().getName() + " : seq : " + seq.getNext());
+
+            }
+        });
+
+        executorService.submit(() -> {
+            while (true) {
+                Thread.sleep(100);
+                System.out.println(Thread.currentThread().getName() + " : seq : " + seq.getNext());
+
+            }
+        });
 
         executorService.shutdown();
 
@@ -29,23 +40,16 @@ public class SequenceSample {
 class OriginSeq {
     private Integer val = 1;
 
-    public Integer getVal() {
-        return val;
-    }
-
-    public void add() {
-        val ++;
+    public Integer getNext() {
+        return val ++;
     }
 }
 
 class Seq {
     private AtomicInteger val = new AtomicInteger();
 
-    public Integer getVal() {
-        return val.get();
+    public Integer getNext() {
+        return val.incrementAndGet();
     }
 
-    public void add() {
-        val.incrementAndGet();
-    }
 }
