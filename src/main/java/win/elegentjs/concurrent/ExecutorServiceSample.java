@@ -22,5 +22,7 @@ public class ExecutorServiceSample {
             executorService.submit(() -> System.out.println(Thread.currentThread().getName()));
         }
 
+        executorService.shutdown();
+
     }
 }
