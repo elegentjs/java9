@@ -1,4 +1,4 @@
-package win.elegentjs.concurrent;
+package win.elegentjs.concurrent.pool;
 
 import java.util.ArrayList;
 import java.util.List;

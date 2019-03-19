@@ -1,4 +1,4 @@
-package win.elegentjs.concurrent;
+package win.elegentjs.concurrent.threadlocal;
 
 @SuppressWarnings("all")
 public class ThreadLocalSample {

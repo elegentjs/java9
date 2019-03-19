@@ -1,4 +1,4 @@
-package win.elegentjs.concurrent;
+package win.elegentjs.concurrent.volatiles;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

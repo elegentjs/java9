@@ -1,4 +1,4 @@
-package win.elegentjs.concurrent;
+package win.elegentjs.concurrent.lock;
 
 @SuppressWarnings("all")
 public class LockSample {

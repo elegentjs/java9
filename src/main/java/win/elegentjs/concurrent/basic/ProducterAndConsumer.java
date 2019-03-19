@@ -1,4 +1,4 @@
-package win.elegentjs.concurrent;
+package win.elegentjs.concurrent.basic;
 
 /**
  * 使用多线程演示生产消费者模式

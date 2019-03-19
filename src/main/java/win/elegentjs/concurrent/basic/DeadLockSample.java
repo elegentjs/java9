@@ -1,4 +1,4 @@
-package win.elegentjs.concurrent;
+package win.elegentjs.concurrent.basic;
 
 /**
  * 模拟死锁的情况

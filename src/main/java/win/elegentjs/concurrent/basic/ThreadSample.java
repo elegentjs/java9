@@ -1,4 +1,4 @@
-package win.elegentjs.concurrent;
+package win.elegentjs.concurrent.basic;
 
 /**
  * 演示了线程的两种创建方式：

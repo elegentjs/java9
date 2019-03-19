@@ -1,4 +1,4 @@
-package win.elegentjs.concurrent;
+package win.elegentjs.concurrent.volatiles;
 
 import java.io.IOException;
 import java.util.concurrent.*;

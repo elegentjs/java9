@@ -1,4 +1,4 @@
-package win.elegentjs.concurrent;
+package win.elegentjs.concurrent.basic;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
