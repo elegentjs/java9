@@ -48,8 +48,9 @@ class OriginSeq {
 class Seq {
     private AtomicInteger val = new AtomicInteger();
 
+    // 自增操作，相当于 val ++
     public Integer getNext() {
-        return val.incrementAndGet();
+        return val.getAndIncrement();
     }
 
 }
