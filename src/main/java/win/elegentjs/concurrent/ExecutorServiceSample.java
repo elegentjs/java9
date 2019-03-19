@@ -16,6 +16,11 @@ public class ExecutorServiceSample {
         executorService.submit(() -> null);
 
         executorService.shutdown();
+        executorService = Executors.newFixedThreadPool(10);
+
+        for (int index = 0; index < 100; index ++) {
+            executorService.submit(() -> System.out.println(Thread.currentThread().getName()));
+        }
 
     }
 }
