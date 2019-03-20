@@ -1,7 +1,6 @@
 package win.elegentjs.concurrent.lock;
 
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 使用Lock实现线程同步
