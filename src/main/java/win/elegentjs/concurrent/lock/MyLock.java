@@ -7,6 +7,7 @@ import java.util.concurrent.locks.Lock;
 
 /**
  * 基于AQS实现自己的Lock
+ * 并且支持可重入
  */
 public class MyLock implements Lock {
 
@@ -50,12 +51,16 @@ public class MyLock implements Lock {
             // 如果是第二个线程进行不能拿到锁，返回false
 
             int state = getState();
+            Thread current = Thread.currentThread();
 
             if (state == 0) {
                 if (compareAndSetState(0, arg)) {
-                    setExclusiveOwnerThread(Thread.currentThread());
+                    setExclusiveOwnerThread(current);
                     return true;
                 }
+            } else if (getExclusiveOwnerThread() == current) {
+                setState(state + 1);
+                return true;
             }
 
             return false;
@@ -71,13 +76,15 @@ public class MyLock implements Lock {
 
             int state = getState() - arg;
 
+            boolean flag = false;
+
             if (state == 0) {
-                setState(0);
+                flag  = true;
                 setExclusiveOwnerThread(null);
-                return true;
             }
 
-            return false;
+            setState(state);
+            return flag;
         }
 
         Condition newCondition() {
