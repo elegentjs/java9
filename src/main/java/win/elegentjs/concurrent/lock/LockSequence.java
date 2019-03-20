@@ -41,7 +41,9 @@ public class LockSequence {
 
 class Sequence {
     private Integer val = 0;
-    private Lock lock = new CustomLock();
+    //private Lock lock = new ReentrantLock();
+    //private Lock lock = new CustomLock();
+    private Lock lock = new MyLock();
 
     public Integer next() {
         lock.lock();
