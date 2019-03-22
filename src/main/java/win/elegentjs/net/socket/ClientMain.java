@@ -1,8 +1,7 @@
 package win.elegentjs.net.socket;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -31,51 +30,10 @@ class ChatClient {
 
 
     public void start() {
-        executorService.submit(new ReadThread());
-        executorService.submit(new WriteThread());
-    }
-
-
-    private class ReadThread implements Runnable {
-
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    InputStream inputStream = socket.getInputStream();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        System.out.println("收到消息： " + line);
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    private class WriteThread implements Runnable {
-
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
-                    System.out.print("发送至服务端： ");
-                    Scanner scanner = new Scanner(System.in);
-                    String line = scanner.nextLine();
-
-                    bw.write(line);
-                    bw.flush();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        executorService.submit(new ReadThread(socket));
+        executorService.submit(new WriteThread(socket));
     }
 }
+
+
+
