@@ -1,4 +1,4 @@
-package win.elegentjs.net.socket;
+package win.elegentjs.net.socket.tcp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
