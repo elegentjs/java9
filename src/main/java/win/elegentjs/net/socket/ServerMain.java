@@ -20,26 +20,37 @@ class ChatServer {
 
     private ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-    private Socket socket;
+    private ServerSocket serverSocket;
 
     public ChatServer(int port) {
 
         try {
-            ServerSocket serverSocket = new ServerSocket(port);
+            serverSocket = new ServerSocket(port);
             System.out.println("server started on port : " + port);
-            socket = serverSocket.accept();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
+
     /**
      * 开启服务端读写线程
+     * 支持多客户端连入
      */
     public void start() {
-        executorService.execute(new ReadThread(socket));
-        executorService.execute(new WriteThread(socket));
+
+        while (true) {
+            try {
+                Socket socket = serverSocket.accept();
+                executorService.execute(new ReadThread(socket));
+                executorService.execute(new WriteThread(socket));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }
