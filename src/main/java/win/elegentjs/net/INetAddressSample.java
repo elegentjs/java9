@@ -15,5 +15,18 @@ public class INetAddressSample {
         inetAddress = InetAddress.getByName("baidu.com");
         System.out.println(inetAddress);
 
+
+        String cannonicalHostName = inetAddress.getCanonicalHostName();
+        System.out.println("canonicalHostName : " + cannonicalHostName);
+
+        String hostAddress = inetAddress.getHostAddress();
+        System.out.println("hostAddress : " + hostAddress);
+
+        String hostName = inetAddress.getHostName();
+        System.out.println("hostName : " + hostName);
+
+        inetAddress = InetAddress.getByAddress(new byte[] {123, 125, 114, 114});
+        System.out.println(inetAddress.getHostName());
+
     }
 }
