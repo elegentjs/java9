@@ -12,9 +12,6 @@ import java.util.Set;
 
 public class Server {
 
-    // 暴露服务端口
-    private Integer port;
-
     // 服务端Socket通道
     private ServerSocketChannel serverSocketChannel;
 
@@ -22,8 +19,6 @@ public class Server {
     private Selector selector;
 
     public Server(Integer port) throws IOException {
-        this.port = port;
-
         this.selector = Selector.open();
 
         this.serverSocketChannel = ServerSocketChannel.open();
