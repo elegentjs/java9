@@ -9,7 +9,10 @@
 package win.elegentjs.lambda;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -19,88 +22,84 @@ import java.util.stream.Collectors;
  */
 public class Apple {
 
+    private Integer weight;
+
     private String color;
 
-    public Apple(String color) {
+    public Apple(Integer weight, String color) {
+        this.weight = weight;
         this.color = color;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-
     public static void main(String[] args) {
-        List<Apple> inventory = new ArrayList<>();
+        List<Apple> apples = new ArrayList<>();
 
-        inventory.add(new Apple("green"));
-        inventory.add(new Apple("green"));
-        inventory.add(new Apple("green"));
-        inventory.add(new Apple("green"));
-        inventory.add(new Apple("red"));
-        inventory.add(new Apple("red"));
-        inventory.add(new Apple("red"));
+        apples.add(new Apple(10, "red"));
+        apples.add(new Apple(9, "red"));
+        apples.add(new Apple(8, "red"));
+        apples.add(new Apple(7, "red"));
+        apples.add(new Apple(6, "red"));
+        apples.add(new Apple(5, "red"));
+        apples.add(new Apple(4, "red"));
+        apples.add(new Apple(3, "green"));
+        apples.add(new Apple(2, "red"));
+        apples.add(new Apple(1, "red"));
 
-        List<Apple> greenApples = filterApples(inventory, Apple::isGreenApple);
-        List<Apple> redApples = filterApples(inventory, Apple::isRedApple);
-
-
-        System.out.println(greenApples);
-        System.out.println(redApples);
-
-
-        greenApples = filterApples(inventory, (Apple apple) -> "green".equals(apple.getColor()));
-        redApples = filterApples(inventory, (Apple apple) -> "red".equals(apple.getColor()));
-
-        System.out.println(greenApples);
-        System.out.println(redApples);
-
-
-        long start = System.currentTimeMillis();
-
-        greenApples = inventory.stream().filter((Apple apple) -> "green".equals(apple.getColor())).collect(Collectors.toList());
-
-        long end = System.currentTimeMillis();
-
-        System.out.println("cost1 : " + (end - start) + " mills.");
-        System.out.println(greenApples);
-
-        start = System.currentTimeMillis();
-        greenApples = inventory.parallelStream().filter((Apple apple) -> "green".equals(apple.getColor())).collect(Collectors.toList());
-        end = System.currentTimeMillis();
-        System.out.println("cost2 : " + (end - start) + " mills.");
-
-        System.out.println(greenApples);
-
-    }
-
-
-
-    public static boolean isGreenApple(Apple apple) {
-        return "green".equals(apple.getColor());
-    }
-
-    public static boolean isRedApple(Apple apple) {
-        return "red".equals(apple.getColor());
-    }
-
-    public static List<Apple> filterApples(List<Apple> inventory, Predicate<Apple> predicate) {
-        List<Apple> result = new ArrayList<>();
-
-        for (Apple item : inventory) {
-            if (predicate.test(item)) {
-                result.add(item);
+        Collections.sort(apples, new Comparator<Apple>() {
+            @Override
+            public int compare(Apple o1, Apple o2) {
+                return o1.weight.compareTo(o2.weight);
             }
-        }
+        });
 
-        return result;
+
+        System.out.println(apples);
+
+
+        Comparator<Apple> comparator = Comparator.comparing(o -> o.weight);
+
+        // 正序
+        apples.sort(comparator);
+
+        //逆序
+        apples.sort(comparator.reversed());
+
+        //比较器链
+        apples.sort(comparator.reversed().thenComparing(apple -> apple.color));
+
+        // 简写
+        apples.sort(Comparator.comparing((Apple e) -> e.weight).reversed().thenComparing(e -> e.weight));
+
+        System.out.println(apples);
+
+        //谓词复合
+        Predicate<Apple> predicate = e -> e.color.equals("red");
+
+        // negate 表示 ！
+        predicate = predicate.negate().and(e -> e.color.equals("green")).or(e -> e.color.equals("black"));
+
+        // 执行过滤
+        apples = apples.stream().filter(predicate).collect(Collectors.toList());
+
+        System.out.println(apples);
+
+        Function<Integer, Integer> f = x -> x + 1;
+        Function<Integer, Integer> g = x -> x * 2;
+
+        //and Then 等价于： g(f(x))
+        Function<Integer, Integer> andThen = f.andThen(g);
+        //compose 等价于：f(g(x))
+        Function<Integer, Integer> compose = f.compose(g);
+
+
     }
 
 
     @Override
     public String toString() {
         return "Apple{" +
-                "color='" + color + '\'' +
+                "weight ='" + weight + '\'' +
+                "color ='" + color + '\'' +
                 '}';
     }
 }
