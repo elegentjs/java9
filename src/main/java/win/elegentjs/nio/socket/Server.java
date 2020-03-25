@@ -107,7 +107,11 @@ public class Server {
         buffer.put(readBuffer);
     }
 
-
+    /**
+     * 服务端接收连接请求
+     * @param key
+     * @throws IOException
+     */
     private void handleAccept(SelectionKey key) throws IOException {
         ServerSocketChannel channel = (ServerSocketChannel) key.channel();
         SocketChannel socketChannel = channel.accept();

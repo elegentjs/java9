@@ -86,7 +86,7 @@ public class Client {
             key.cancel();
             channel.close();
             selector.close();
-            System.out.println("关闭与客户端的连接");
+            System.out.println("关闭与服务端的连接");
         }
 
         ByteBuffer tmp = CharSetUtil.encode(outPutData, "UTF-8");

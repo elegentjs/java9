@@ -8,10 +8,7 @@
  */
 package win.elegentjs.lambda;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -91,6 +88,15 @@ public class Apple {
         //compose 等价于：f(g(x))
         Function<Integer, Integer> compose = f.compose(g);
 
+        apples.forEach(System.out::println);
+
+        Optional<Apple> apple = apples.stream().filter(e -> e.weight > 0).findAny();
+
+        if (apple.isPresent()) {
+            //
+        }
+
+        apple.ifPresent(System.out::println);
 
     }
 
