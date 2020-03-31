@@ -6,6 +6,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
+/**
+ * 基于netty的服务端
+ */
 public class TimeServer {
 
     public void bind(int port) throws Exception {
@@ -31,7 +34,6 @@ public class TimeServer {
             workerGroup.shutdownGracefully();
         }
 
-
     }
 
     private class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
@@ -42,8 +44,6 @@ public class TimeServer {
     }
 
     public static void main(String[] args) throws Exception {
-        int port = 8080;
-
-        new TimeServer().bind(port);
+        new TimeServer().bind(8080);
     }
 }
