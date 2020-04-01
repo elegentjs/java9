@@ -5,6 +5,8 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
 
 import java.util.Arrays;
 
@@ -24,10 +26,13 @@ public class EchoClient {
                     .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast("msgpack decoder", new MsgpackDecoder());
-                            socketChannel.pipeline().addLast("msgpack encoder", new MsgpackEncoder());
-                            socketChannel.pipeline().addLast(new EchoClientHandler());
+                        protected void initChannel(SocketChannel channel) throws Exception {
+                            channel.pipeline()
+                                    .addLast("frameDecoder", new LengthFieldBasedFrameDecoder(65535, 0, 2, 0, 2))
+                                    .addLast("msgpack decoder", new MsgpackDecoder())
+                                    .addLast("frameEncoder", new LengthFieldPrepender(2))
+                                    .addLast("msgpack encoder", new MsgpackEncoder())
+                                    .addLast(new EchoClientHandler());
                         }
                     });
 
