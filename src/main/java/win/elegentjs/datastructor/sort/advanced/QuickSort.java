@@ -2,6 +2,9 @@ package win.elegentjs.datastructor.sort.advanced;
 
 /**
  * 快速排序
+ *
+ * 时间复杂度：O(n * logn)
+ *
  */
 public class QuickSort {
 

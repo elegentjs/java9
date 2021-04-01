@@ -58,10 +58,7 @@ public class MiddleNum {
 
     }
 
-    public static void main(String[] args) {
-        int[] array = new int[]{555,901,482,1771};
-        findNumbers(array);
-    }
+
 
     // 统计字符出现次数的算法题
     public int numJewelsInStones(String J, String S) {
@@ -145,4 +142,50 @@ public class MiddleNum {
         return total;
 
     }
+
+
+    // 首先要理解什么是回文？即正读反读都一样，采用暴力破解法，即穷举字符串组合，并判断是否是回文
+    public String longestPalindrome(String s) {
+
+        String result = "";
+
+        for (int i = 0; i < s.length(); i ++) {
+            for (int j = i + 1; j <= s.length(); j ++) {
+                String sub = s.substring(i, j);
+
+                if (isCycleString(sub) && sub.length() >= result.length()) {
+                    result = sub;
+                }
+
+            }
+        }
+
+
+        return result;
+
+    }
+
+
+    private boolean isCycleString(String s) {
+
+        boolean result = true;
+        for (int index = 0; index < s.length() / 2; index ++) {
+            char c = s.charAt(index);
+            char lastC = s.charAt(s.length() - 1 - index);
+
+            if (c != lastC) {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
+
+    }
+
+    public static void main(String[] args) {
+        String result = new MiddleNum().longestPalindrome("a");
+        System.out.println(result);
+    }
+
 }

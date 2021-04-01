@@ -4,8 +4,13 @@ import win.elegentjs.util.ArrayUtil;
 
 /**
  * 直接插入排序
+ *
+ * 直接插入排序的思想是整体排序是渐进的过程，先前两个，后面的元素依次往前面插入，找到对应的位置
+ *
+ * 时间复杂度 O(n * n)
+ * 空间复杂度 O(n)
  */
-public class InserctionSort {
+public class InsertionSort {
 
     public static void sort(int[] array) {
         for (int i = 1; i < array.length; i ++) {
@@ -23,7 +28,7 @@ public class InserctionSort {
 
 
     public static void main(String[] args) throws NoSuchMethodException {
-        ArrayUtil.sort(InserctionSort.class.getMethod("sort", int[].class));
+        ArrayUtil.sort(InsertionSort.class.getMethod("sort", int[].class));
     }
 
 }

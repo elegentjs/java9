@@ -1,15 +1,17 @@
 package win.elegentjs.datastructor.sort.simple;
 
-import win.elegentjs.datastructor.array.Array;
 import win.elegentjs.util.ArrayUtil;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-
-import static win.elegentjs.util.PrintUtil.print;
 
 /**
  * 选择排序
+ *
+ * 核心算法：
+ *
+ *  从第0个元素开始依次跟其余的元素进行比较，决定最小的元素，
+ *  然后再从第1个元素开始比较决定第二小的元素，依次类推做完排序
+ *
+ *  时间复杂度 O（N * N）
+ *  空间复杂度 O (N)
  */
 public class SelectionSort {
 
